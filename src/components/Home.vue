@@ -8,6 +8,7 @@
       <div class="col-sm-12 col-md-6 pic-box install">
         <h1 class="box-title">Media wiring and installation</h1>
       </div> -->
+      
     </div>
     <div class="row">
       <div class="col-sm-12 mid-strip">
