@@ -5,6 +5,7 @@ import Products from '@/components/Products'
 import Reviews from '@/components/Reviews'
 import ServiceArea from '@/components/ServiceArea'
 import Contact from '@/components/Contact'
+import Test from '@/components/Test'
 
 Vue.use(Router)
 
@@ -16,7 +17,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/products',
+      path: '/products/:product_slug',
       name: 'Products',
       component: Products
     },
@@ -34,6 +35,11 @@ export default new Router({
       path: '/contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
     }
   ]
 })

@@ -1,21 +1,28 @@
 <template>
     <div class="main-nav">
 
-        <div class="container">
-            <b-navbar toggleable="md" type="dark" variant="">
+        <div class="">
+            <b-navbar toggleable="lg" type="dark" variant="">
                 <b-navbar-brand href="#">
                     <b-link :to="{ name: 'Home' }">
-                        <img src="../assets/logo.png" alt="logo" />
+                        <img src="../assets/lake-logo.png" alt="logo" />
                     </b-link>
                 </b-navbar-brand>
                 <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
                 <b-collapse is-nav id="nav_dropdown_collapse">
                     <b-navbar-nav class="ml-auto">
-                        <b-link exact :to="{ name: 'Home' }">Home</b-link>
-                        <b-link exact :to="{ name: 'Products' }">Products</b-link>
-                        <b-link exact :to="{ name: 'Reviews' }">Reviews</b-link>
-                        <b-link exact :to="{ name: 'ServiceArea' }">Service Area</b-link>
-                        <b-link exact :to="{ name: 'Contact' }">Contact</b-link>
+
+                        <b-nav-item exact :to="{ name: 'Home' }">HOME</b-nav-item>
+                        <b-nav-item-dropdown text="PRODUCTS">
+                            <b-dropdown-item href="#">Media Wiring and Installation</b-dropdown-item>
+                            <b-dropdown-item href="#">Home Security</b-dropdown-item>
+                            <b-dropdown-item href="#">Home Theater and Audio</b-dropdown-item>
+                            <b-dropdown-item href="#">Central Vacuum Systems</b-dropdown-item>
+                        </b-nav-item-dropdown>
+                        <b-nav-item exact :to="{ name: 'Reviews' }">REVIEWS</b-nav-item>
+                        <b-nav-item exact :to="{ name: 'ServiceArea' }">ABOUT US</b-nav-item>
+                        <b-nav-item exact :to="{ name: 'Contact' }">CONTACT</b-nav-item>
+
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
@@ -43,11 +50,11 @@ export default {
     background-repeat: no-repeat;
     min-height: 87px;
 }
-ul a{
-    padding: 0 10px;
+ul a, .dropdown a{
+    padding: 0 9px;
     font-weight: bold;
+    letter-spacing: -0.7px;
     color: white;
-    opacity: 0.64;
 }
 .active{
     opacity: 1;
@@ -57,12 +64,18 @@ a:hover{
     opacity: 1;
     text-decoration: none;
 }
-@media screen and (min-width: 768px){
+.dropdown-menu{
+    background: gray;
+}
+@media screen and (min-width: 992px){
     ul a{
-        margin-top: 20px;
+        margin-top: 28px;
+    }
+    .dropdown{
+        margin-top: 8px;
     }
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 991px){
     nav ul{
         display: flex;
         align-items: flex-end;
