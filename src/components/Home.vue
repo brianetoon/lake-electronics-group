@@ -1,14 +1,17 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-
-      <!-- <div class="col-sm-12 col-md-6 pic-box sec-auto">
-        <h1 class="box-title">Security and automation</h1>
-      </div>
-      <div class="col-sm-12 col-md-6 pic-box install">
-        <h1 class="box-title">Media wiring and installation</h1>
-      </div> -->
       
+      <div class="col product" v-for="product in products" :key="product.id">
+        <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
+          <div class="background" :style="{ backgroundImage: 'url('+ getPicUrl(product.homephoto) +')'}">
+            <div class="gradient">
+              <h2 class="product-title">{{ product.name }}</h2>
+            </div>
+          </div>
+        </router-link>
+      </div>
+
     </div>
     <div class="row">
       <div class="col-sm-12 mid-strip">
@@ -20,7 +23,7 @@
       <div class="col-sm-12 col-md-6">
         <div class="video-wrapper">
           <div class="embed-responsive embed-responsive-16by9"> 
-              <video width="320" height="240" controls>
+              <video controls>
                   <source src="../assets/video.mp4" type="video/mp4">
               </video>
           </div> 
@@ -37,41 +40,62 @@
 </template>
 
 <script>
+import db from '@/firebase/init'
+
 export default {
   name: 'Home',
   data () {
     return {
-      
+      products: []
+    }
+  },
+  created(){
+    // fetch data from the firestore
+    db.collection('products').get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        // console.log(doc.data(), doc.id)
+        let product = doc.data()
+        product.id = doc.id
+        this.products.push(product)
+      })
+    })
+  },
+  methods: {
+    getPicUrl(img){
+        var images = require.context('../assets/', true, /\.png$/)
+        return images('./' + img)
     }
   }
 }
 </script>
 
-<style>
-.pic-box{
+<style scoped>
+.product{
+  padding: 0;
+}
+.background{
   padding: 0;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 325px;
+  height: 580px;
 }
-.box-title{
+.background:hover{
+  opacity: 0.9;
+}
+.product-title{
   font-size: 1.6em;
   color: #0a3a6f;
   font-weight: bold;
-  letter-spacing: -0.7px;
-  padding: 10px 0px 10px 10px;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
-  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+  padding: 10px;
 }
-.sec-auto{
-  /* background-image: url("../assets/sec-and-auto-2@2x.png"); */
-}
-.install{
-  /* background-image: url("../assets/install@2x.png"); */
+.gradient{
+  height: 30%;
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
 }
 .mid-strip{
   background-image: url("../assets/strip-center.png");
@@ -90,10 +114,12 @@ export default {
   padding: 50px 0;
 }
 .video-wrapper{
-  
-}
-.video-wrapper{
   border: 5px solid #fff;
+}
+
+video{
+  width: 100%;
+  height: auto;
 }
 
 .apt-button{
@@ -102,10 +128,10 @@ export default {
   color: #09386d;
   font-size: 1.2em;
   border: none;
-  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.3) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.3) 100%);
+  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
 }
 
 .apt-button:hover{
@@ -113,19 +139,19 @@ export default {
   cursor: pointer;
 }
 
+.alarm-logo{
+  width: 85%;
+}
+
 /**** MEDIA QUERIES ****/
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) {
-    .slogan{
+  .slogan{
     font-size: 1.7em;
   }
   .sub-slogan{
     font-size: 1.5em;
-  }
-  .alarm-logo{
-    width: 350px;
-    padding-top: 30px;
   }
   .apt-button{
     margin-top: 30px;
@@ -140,10 +166,6 @@ export default {
   .sub-slogan{
     font-size: 1.5em;
   }
-  .alarm-logo{
-    width: 450px;
-    padding-top: 30px;
-  }
   .apt-button{
     margin-top: 30px;
   }
@@ -156,10 +178,6 @@ export default {
   .sub-slogan{
     font-size: 1.6em;
   }
-  .alarm-logo{
-    width: 300px;
-    padding-top: 30px;
-  }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -169,10 +187,6 @@ export default {
   .sub-slogan{
     font-size: 2em;
   }
-  .alarm-logo{
-    width: 350px;
-    padding-top: 60px;
-  }
 }
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
@@ -181,10 +195,6 @@ export default {
   }
   .sub-slogan{
     font-size: 2.2em;
-  }
-  .alarm-logo{
-    width: 500px;
-    padding-top: 75px;
   }
 }
 </style>

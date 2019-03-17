@@ -14,10 +14,13 @@
 
                         <b-nav-item exact :to="{ name: 'Home' }">HOME</b-nav-item>
                         <b-nav-item-dropdown text="PRODUCTS">
-                            <b-dropdown-item href="#">Media Wiring and Installation</b-dropdown-item>
-                            <b-dropdown-item href="#">Home Security</b-dropdown-item>
-                            <b-dropdown-item href="#">Home Theater and Audio</b-dropdown-item>
-                            <b-dropdown-item href="#">Central Vacuum Systems</b-dropdown-item>
+
+                            <b-dropdown-item v-for="product in products" :key="product.id"
+                                :to="{ name: 'Product', params: { product_slug: product.slug} }"
+                                class="text-uppercase">
+                                {{ product.name }}
+                            </b-dropdown-item>
+
                         </b-nav-item-dropdown>
                         <b-nav-item exact :to="{ name: 'Reviews' }">REVIEWS</b-nav-item>
                         <b-nav-item exact :to="{ name: 'ServiceArea' }">ABOUT US</b-nav-item>
@@ -32,13 +35,26 @@
 </template>
 
 <script>
+import db from '@/firebase/init'
+
 export default {
     name: 'Navbar',
     data(){
         return{
-
+            products: []
         }
-    }
+    },
+    created(){
+    // fetch data from the firestore
+    db.collection('products').get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        let product = doc.data()
+        product.id = doc.id
+        this.products.push(product)
+      })
+    })
+  }
 }
 </script>
 
@@ -48,7 +64,8 @@ export default {
     background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 87px;
+    min-height: 140px;
+    padding-top: 20px;
 }
 ul a, .dropdown a{
     padding: 0 9px;
@@ -65,7 +82,23 @@ a:hover{
     text-decoration: none;
 }
 .dropdown-menu{
-    background: gray;
+    background:#fff;
+    padding: 0;
+}
+a.dropdown-item{
+    margin: 0;
+    color: #9ca9ca;
+}
+a.dropdown-item:focus, a.dropdown-item:hover{
+    color: #0a3a6f;
+    background: none;
+}
+.dropdown-menu .active{
+    background-color: white;
+    color: #0a3a6f;
+}
+.drop-item:active{
+    opacity: 1;   
 }
 @media screen and (min-width: 992px){
     ul a{
@@ -79,6 +112,9 @@ a:hover{
     nav ul{
         display: flex;
         align-items: flex-end;
+    }
+    .nav-link{
+        padding: 3px 0;
     }
 }
 </style>
