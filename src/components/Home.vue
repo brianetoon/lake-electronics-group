@@ -1,8 +1,20 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
+
       
-      <div class="col product" v-for="product in products" :key="product.id">
+
+      <div class="col-12 product d-lg-none" v-for="product in products" :key="`mobile-${product.id}`">
+        <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
+          <div class="background-mobile" :style="{ backgroundImage: 'url('+ getPicUrl(product.mobilephoto) +')'}">
+            <div class="gradient-mobile">
+              <h2 class="product-title">{{ product.name }}</h2>
+            </div>
+          </div>
+        </router-link>
+      </div>
+      
+      <div class="col product d-none d-lg-block" v-for="product in products" :key="product.id">
         <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
           <div class="background" :style="{ backgroundImage: 'url('+ getPicUrl(product.homephoto) +')'}">
             <div class="gradient">
@@ -74,6 +86,13 @@ export default {
 .product{
   padding: 0;
 }
+.background-mobile{
+  padding: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 350px;
+}
 .background{
   padding: 0;
   background-position: center;
@@ -90,6 +109,12 @@ export default {
   font-weight: bold;
   padding: 10px;
 }
+.gradient-mobile{
+  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,.3) 100%);
+  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,.3) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
 .gradient{
   height: 30%;
   background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
@@ -105,7 +130,6 @@ export default {
   padding: 15px;
   color: #fff;
 }
-
 .bot-strip{
   background-image: url("../assets/lower-gradient.png");
   background-position: left;
@@ -116,12 +140,10 @@ export default {
 .video-wrapper{
   border: 5px solid #fff;
 }
-
 video{
   width: 100%;
   height: auto;
 }
-
 .apt-button{
   height: 60px;
   width: 100%;
@@ -133,14 +155,14 @@ video{
   background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
 }
-
 .apt-button:hover{
   background: #fff;
   cursor: pointer;
 }
-
 .alarm-logo{
   width: 85%;
+  padding-top: 20px;
+  max-width: 500px;
 }
 
 /**** MEDIA QUERIES ****/

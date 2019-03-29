@@ -16,7 +16,7 @@
 
         <div class="container-fluid info-background justify-content-center">
 
-            <div class="row info-row">
+            <div class="row content-row">
 
                 <div class="col-xs-12 col-md-6">
                     <p class="info-text" v-for="(para, index) in product.info" :key="`A-${index}`">{{ para }}</p>
@@ -33,7 +33,7 @@
 
             </div>
 
-            <div class="row info-row d-lg-none">
+            <div class="row content-row d-lg-none">
                 <div class="col-xs-12 col-md-6 list-margin">
                     <h5 class="title-text">{{ product.titlelist }}:</h5>
                     <p class="list-text" v-for="(item, index) in product.list" :key="`B-${index}`">{{ item }}</p>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="row vid-row justify-content-center media-wrapper" v-if="product.video">
+            <div class="row content-row justify-content-center media-wrapper" v-if="product.video">
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-7 media-border">
                         <div class="video">
                             <div class="embed-responsive embed-responsive-16by9"> 
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="row carousel-row justify-content-center media-wrapper" v-if="product.carousel">
+            <div class="row content-row justify-content-center media-wrapper" v-if="product.carousel">
                 <div class="col-xs-12 col-sm-12 col-md-10 col-lg-7 media-border">
                     <b-carousel id="carousel1"
                         style="text-shadow: 1px 1px 2px #333;"
@@ -155,13 +155,7 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
 }
-.info-row{
-    padding: 20px 0;
-}
-.vid-row{
-    padding: 20px 0;
-}
-.carousel-row{
+.content-row{
     padding: 20px 0;
 }
 .info-text{
