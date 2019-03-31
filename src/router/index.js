@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Product from '@/components/Product'
 import Reviews from '@/components/Reviews'
-import ServiceArea from '@/components/ServiceArea'
+import AboutUs from '@/components/AboutUs'
 import Contact from '@/components/Contact'
 import Test from '@/components/Test'
 
@@ -27,9 +27,9 @@ export default new Router({
       component: Reviews
     },
     {
-      path: '/service-area',
-      name: 'ServiceArea',
-      component: ServiceArea
+      path: '/about-us',
+      name: 'AboutUs',
+      component: AboutUs
     },
     {
       path: '/contact',

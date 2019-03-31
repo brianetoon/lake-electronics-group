@@ -15,7 +15,8 @@
     "firebase": "^5.8.4",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-filters": "^0.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

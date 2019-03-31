@@ -9,7 +9,8 @@ export default {
     name: 'Reviews',
     data(){
         return{
-            msg: 'This is the reviews page'
+            msg: 'This is the reviews page',
+            reviews: []
         }
     }
 }

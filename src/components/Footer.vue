@@ -48,9 +48,6 @@ export default {
             ]
         }
     },
-    created(){
-        console.log(this.footer)
-    },
     methods:{
         getPicUrl(img){
             var images = require.context('../assets/', true, /\.png$/)
@@ -72,6 +69,7 @@ export default {
 .text p{
     margin: 0 0 0 5px;
     padding-left: 10px;
+    font-size: 0.9em;
 }
 .obj{
     padding: 10px 0;

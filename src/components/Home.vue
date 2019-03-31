@@ -4,7 +4,7 @@
 
       
 
-      <div class="col-12 product d-lg-none" v-for="product in products" :key="`mobile-${product.id}`">
+      <div class="col-12 product d-lg-none" v-for="product in orderBy(products, 'order')" :key="`mobile-${product.id}`">
         <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
           <div class="background-mobile" :style="{ backgroundImage: 'url('+ getPicUrl(product.mobilephoto) +')'}">
             <div class="gradient-mobile">
@@ -14,7 +14,7 @@
         </router-link>
       </div>
       
-      <div class="col product d-none d-lg-block" v-for="product in products" :key="product.id">
+      <div class="col product d-none d-lg-block" v-for="product in orderBy(products, 'order')" :key="product.id">
         <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
           <div class="background" :style="{ backgroundImage: 'url('+ getPicUrl(product.homephoto) +')'}">
             <div class="gradient">
@@ -53,6 +53,7 @@
 
 <script>
 import db from '@/firebase/init'
+import Vue2Filters from 'vue2-filters'
 
 export default {
   name: 'Home',
@@ -73,6 +74,7 @@ export default {
       })
     })
   },
+  mixins: [Vue2Filters.mixin],
   methods: {
     getPicUrl(img){
         var images = require.context('../assets/', true, /\.png$/)
@@ -110,9 +112,9 @@ export default {
   padding: 10px;
 }
 .gradient-mobile{
-  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,.3) 100%);
-  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,.3) 100%);
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,.3) 100%);
+  background: -moz-linear-gradient(left, rgba(255,255,255,.8) 0%, rgba(255,255,255,.3) 100%);
+  background: -webkit-linear-gradient(left, rgba(255,255,255,.8) 0%,rgba(255,255,255,.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,.8) 0%,rgba(255,255,255,.3) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
 }
 .gradient{
@@ -177,6 +179,9 @@ video{
   }
   .apt-button{
     margin-top: 30px;
+  }
+  .product-title{
+    font-size: 1.4em;
   }
 }
 

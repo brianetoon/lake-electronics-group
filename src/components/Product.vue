@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .page-title{
     font-weight: bold;
     margin: 0;
@@ -162,7 +162,7 @@ export default {
     color: #fff;
     font-family: freight-sans-pro, sans-serif;
     font-style: normal;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 .title-text{
     color: #fff;
@@ -225,7 +225,7 @@ export default {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767px){
     .page-title{
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
     .media-wrapper{
         padding: 15px;

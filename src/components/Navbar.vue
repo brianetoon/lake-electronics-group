@@ -23,7 +23,7 @@
 
                         </b-nav-item-dropdown>
                         <b-nav-item exact :to="{ name: 'Reviews' }">REVIEWS</b-nav-item>
-                        <b-nav-item exact :to="{ name: 'ServiceArea' }">ABOUT US</b-nav-item>
+                        <b-nav-item exact :to="{ name: 'AboutUs' }">ABOUT US</b-nav-item>
                         <b-nav-item exact :to="{ name: 'Contact' }">CONTACT</b-nav-item>
 
                     </b-navbar-nav>
@@ -115,6 +115,22 @@ a.dropdown-item:focus, a.dropdown-item:hover{
     }
     .nav-link{
         padding: 3px 0;
+    }
+}
+@media (max-width: 500px) {
+    ul a, .dropdown a{
+        font-size: 0.9em;
+    }
+}
+
+@media (min-width: 992px) { 
+     ul a, .dropdown a{
+        font-size: 1.05em;
+    }
+}
+@media (min-width: 1200px) { 
+     ul a, .dropdown a{
+        font-size: 1.1em;
     }
 }
 </style>
