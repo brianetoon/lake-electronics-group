@@ -7,10 +7,20 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Vuelidate from 'vuelidate'
+ 
+library.add(faStar)
+ 
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)
 Vue.use(Vue2Filters)
+Vue.use(require('vue-moment'));
 Vue.config.productionTip = false
+Vue.use(Vuelidate)
 
 /* eslint-disable no-new */
 new Vue({

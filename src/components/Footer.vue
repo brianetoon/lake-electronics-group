@@ -28,7 +28,7 @@ export default {
                 {
                     icon: "alarm.png",
                     name: '24/7 Emergency Monitoring:',
-                    value: '248-896-2099'
+                    value: '877-661-6355'
                 },
                 {
                     icon: "email.png",

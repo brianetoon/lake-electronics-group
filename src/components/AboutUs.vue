@@ -14,11 +14,11 @@
         <div class="container-fluid info-background" :style="{ backgroundImage: 'url('+ getPicUrl(gradient) +')'}">
             <div class="row content-row">
                 <div class="col-md-12 col-lg-6">
-                    <p class="info-text" v-for="(para, index) in info" :key="index">
+                    <p class="info-text" v-for="(para, index) in info" :key="`A-${index}`">
                         {{ para }}
                     </p>
                     <h5 class="title-text">{{ titlelist | uppercase }}:</h5>
-                    <p class="list-text" v-for="(item, index) in list" :key="index">
+                    <p class="list-text" v-for="(item, index) in list" :key="`B-${index}`">
                         {{ item }}
                     </p>
                 </div>
@@ -79,7 +79,7 @@ export default {
 .page-title{
     font-weight: bold;
     margin: 0;
-    padding: 5px 15px 10px 30px;
+    padding: 5px 15px 10px 15px;
     background: -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 100%);
     background: -webkit-linear-gradient(left, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.3) 100%);
     background: linear-gradient(to right, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.3) 100%); 
@@ -142,6 +142,13 @@ export default {
 @media (min-width: 992px) {
     .map{
         margin-top: -30%;
+    }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .content-row{
+        max-width: 1200px;
+        margin: auto;
     }
 }
 </style>

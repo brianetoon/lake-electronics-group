@@ -2,8 +2,6 @@
   <div class="home container-fluid">
     <div class="row">
 
-      
-
       <div class="col-12 product d-lg-none" v-for="product in orderBy(products, 'order')" :key="`mobile-${product.id}`">
         <router-link :to="{ name: 'Product', params: { product_slug: product.slug} }">
           <div class="background-mobile" :style="{ backgroundImage: 'url('+ getPicUrl(product.mobilephoto) +')'}">
@@ -31,7 +29,7 @@
         <h3 class="font-weight-bold sub-slogan">Serving metro Detroit and southeast Michigan</h3>
       </div>
     </div>
-    <div class="row bot-strip">
+    <div class="row content-row align-items-center">
       <div class="col-sm-12 col-md-6">
         <div class="video-wrapper">
           <div class="embed-responsive embed-responsive-16by9"> 
@@ -42,7 +40,9 @@
         </div>
       </div>
       <div class="col-sm-12 col-md-6">
-        <button type="button" class="apt-button">Schedule Appointment</button>
+        <router-link :to="{ name: 'Contact'}">
+          <button type="button" class="apt-button">Schedule Appointment</button>
+        </router-link>
         <div class="text-center">
           <img class="alarm-logo" src="../assets/alarm-logo.png" alt="alarm.com">
         </div>
@@ -88,6 +88,9 @@ export default {
 .product{
   padding: 0;
 }
+.content-row{
+    padding: 30px 0;
+}
 .background-mobile{
   padding: 0;
   background-position: center;
@@ -104,6 +107,9 @@ export default {
 }
 .background:hover{
   opacity: 0.9;
+}
+a:hover{
+  text-decoration: none;
 }
 .product-title{
   font-size: 1.6em;
@@ -132,12 +138,12 @@ export default {
   padding: 15px;
   color: #fff;
 }
-.bot-strip{
-  background-image: url("../assets/lower-gradient.png");
+.home{
+  background-image: url("../assets/blue-gradient-final.png");
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 50px 0;
+  /* padding: 50px 0; */
 }
 .video-wrapper{
   border: 5px solid #fff;
@@ -152,10 +158,11 @@ video{
   color: #09386d;
   font-size: 1.2em;
   border: none;
-  background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.3) 100%);
-  background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%);
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0.3) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+  background: -moz-linear-gradient(left,  rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.5) 100%);
+  background: -webkit-linear-gradient(left,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.5) 100%);
+  background: linear-gradient(to right,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ffffff', endColorstr='#80ffffff',GradientType=1 );
+
 }
 .apt-button:hover{
   background: #fff;
@@ -163,11 +170,17 @@ video{
 }
 .alarm-logo{
   width: 85%;
-  padding-top: 20px;
   max-width: 500px;
+  padding-top: 20px;
 }
 
 /**** MEDIA QUERIES ****/
+
+@media (max-width: 767px) {
+  .alarm-logo{
+    padding-top: 30px;
+  }
+}
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) {
@@ -222,6 +235,10 @@ video{
   }
   .sub-slogan{
     font-size: 2.2em;
+  }
+  .content-row, .slogan, .sub-slogan{
+    max-width: 1200px;
+    margin: auto;
   }
 }
 </style>

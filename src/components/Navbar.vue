@@ -15,7 +15,7 @@
                         <b-nav-item exact :to="{ name: 'Home' }">HOME</b-nav-item>
                         <b-nav-item-dropdown text="PRODUCTS">
 
-                            <b-dropdown-item v-for="product in products" :key="product.id"
+                            <b-dropdown-item v-for="product in orderBy(products, 'order')" :key="product.id"
                                 :to="{ name: 'Product', params: { product_slug: product.slug} }"
                                 class="text-uppercase">
                                 {{ product.name }}
@@ -36,6 +36,7 @@
 
 <script>
 import db from '@/firebase/init'
+import Vue2Filters from 'vue2-filters'
 
 export default {
     name: 'Navbar',
@@ -54,7 +55,8 @@ export default {
         this.products.push(product)
       })
     })
-  }
+  },
+   mixins: [Vue2Filters.mixin]
 }
 </script>
 
@@ -72,6 +74,7 @@ ul a, .dropdown a{
     font-weight: bold;
     letter-spacing: -0.7px;
     color: white;
+    line-height: 1.20;
 }
 .active{
     opacity: 1;
@@ -97,8 +100,10 @@ a.dropdown-item:focus, a.dropdown-item:hover{
     background-color: white;
     color: #0a3a6f;
 }
-.drop-item:active{
-    opacity: 1;   
+.dropdown-item .active, .dropdown-item:active{
+    opacity: 1;
+    background-color: white;
+    color:#0a3a6f; 
 }
 @media screen and (min-width: 992px){
     ul a{

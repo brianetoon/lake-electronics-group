@@ -251,6 +251,10 @@ export default {
     .pic-margin{
         margin-top: -90px;
     }
+    .content-row{
+        max-width: 1200px;
+        margin: auto;
+    }
 }
 </style>
 

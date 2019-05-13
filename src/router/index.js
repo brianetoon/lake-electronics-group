@@ -5,11 +5,12 @@ import Product from '@/components/Product'
 import Reviews from '@/components/Reviews'
 import AboutUs from '@/components/AboutUs'
 import Contact from '@/components/Contact'
-import Test from '@/components/Test'
+import SubmitReview from '@/components/SubmitReview'
 
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -37,9 +38,9 @@ export default new Router({
       component: Contact
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test
+      path: '/submit-review',
+      name: 'SubmitReview',
+      component: SubmitReview
     }
   ]
 })
