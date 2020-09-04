@@ -21,7 +21,7 @@
     "firebase": "^5.8.4",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
-    "vue-moment": "^4.0.0",
+    "vue-moment": "^4.1.0",
     "vue-router": "^3.0.1",
     "vue2-filters": "^0.5.1",
     "vuelidate": "^0.7.4"
